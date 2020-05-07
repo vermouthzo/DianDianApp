@@ -1,8 +1,6 @@
 package cn.edu.sjucc.diandian;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
 
 public class Channel implements Serializable {
     private String id;
@@ -10,7 +8,6 @@ public class Channel implements Serializable {
     private String quality;
     private String cover;
     private String url;
-    private List comments;
 
     @Override
     public String toString() {
@@ -18,9 +15,8 @@ public class Channel implements Serializable {
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", quality='" + quality + '\'' +
-                ", cover=" + cover +
+                ", cover='" + cover + '\'' +
                 ", url='" + url + '\'' +
-                ", comments=    " + comments +
                 '}';
     }
 
@@ -30,22 +26,6 @@ public class Channel implements Serializable {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public List getComments() {
-        return comments;
-    }
-
-    public void setComments(List comments) {
-        this.comments = comments;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public String getTitle() {
@@ -72,19 +52,11 @@ public class Channel implements Serializable {
         this.cover = cover;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Channel channel = (Channel) o;
-        return cover == channel.cover &&
-                Objects.equals(title, channel.title) &&
-                Objects.equals(quality, channel.quality);
+    public String getUrl() {
+        return url;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(title, quality, cover);
+    public void setUrl(String url) {
+        this.url = url;
     }
-
 }

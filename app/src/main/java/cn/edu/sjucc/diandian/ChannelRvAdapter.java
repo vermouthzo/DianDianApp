@@ -39,7 +39,9 @@ public class ChannelRvAdapter extends RecyclerView.Adapter<ChannelRvAdapter.Chan
     @NonNull
     @Override
     public ChannelRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View rowView = LayoutInflater.from(parent.getContext()).inflate(R.layout.channel_row, parent, false);
+        View rowView = LayoutInflater
+                .from(parent.getContext())
+                .inflate(R.layout.channel_row, parent, false);
         ChannelRowHolder holder = new ChannelRowHolder(rowView);
 
         return holder;
@@ -52,7 +54,6 @@ public class ChannelRvAdapter extends RecyclerView.Adapter<ChannelRvAdapter.Chan
      */
     @Override
     public int getItemCount() {
-        //TODO 此处暂时硬编码为30行
         return lad.getSize();
     }
 
@@ -89,7 +90,7 @@ public class ChannelRvAdapter extends RecyclerView.Adapter<ChannelRvAdapter.Chan
             row.setOnClickListener((v) -> {
                 int position = getLayoutPosition();
                 Log.d("DianDian", position + 1 + "行被点击啦！");
-                //TODO 调用时机的跳转代码
+                //调用时机的跳转代码
                 listener.onChannelClick(position);
             });
 
@@ -115,8 +116,6 @@ public class ChannelRvAdapter extends RecyclerView.Adapter<ChannelRvAdapter.Chan
                     .placeholder(R.drawable.cctv1)
                     .apply(ro)
                     .into(this.cover);
-
-
         }
     }
 }

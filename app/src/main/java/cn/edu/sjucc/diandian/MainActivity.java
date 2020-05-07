@@ -16,6 +16,16 @@ public class MainActivity extends AppCompatActivity {
     private ChannelLad lad = ChannelLad.getInstance();
     private ChannelRvAdapter rvAdapter;
 
+    private Handler handler = new Handler() {
+        //按快捷键Ctrl o
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            if (msg.what == 1) {
+                rvAdapter.notifyDataSetChanged();
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,27 +37,20 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, PlayerActivity.class);
             //通过位置p得到当前频道channel
             Channel c = lad.getChannel(p);
-            intent.putExtra("Channel", c);
+            intent.putExtra("channel", c);
             startActivity(intent);
         });
 
-        initData();
         this.channelRv.setAdapter(rvAdapter);
         this.channelRv.setLayoutManager(new LinearLayoutManager(this));
 
     }
 
-    //初始化即将显示的数据
-    private void initData() {
-        //得到网络上的数据后，去更新界面
-        Handler handler = new Handler() {
-            //快捷键 ctrl o
-            @Override
-            public void handleMessage(@NonNull Message msg) {
-                //若收到了来自其他线程的数据，则运行以下代码
-                rvAdapter.notifyDataSetChanged();
-            }
-        };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //把主线程的handler传递给子线程使用
         lad.getData(handler);
     }
 }
