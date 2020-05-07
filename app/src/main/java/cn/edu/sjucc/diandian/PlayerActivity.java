@@ -32,6 +32,8 @@ import java.util.Random;
 import retrofit2.Retrofit;
 
 public class PlayerActivity extends AppCompatActivity {
+    private final static String TAG = "DianDian";
+
     private SimpleExoPlayer player;
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private PlayerView playerView;
@@ -44,16 +46,16 @@ public class PlayerActivity extends AppCompatActivity {
         @Override
         public void handleMessage(@NonNull Message msg) {
             switch (msg.what) {
-                case 2://显示热门评论
+                case ChannelLad.MSG_HOT_COMMENTS://显示热门评论
                     hotComments = (List<Comment>) msg.obj;
                     updateUI();
                     break;
-                case 3://评论成功了，提示一下用户
+                case ChannelLad.MSG_ADD_COMMENT://评论成功了，提示一下用户
                     Toast.makeText(PlayerActivity.this, "感谢您的留言！",
                             Toast.LENGTH_LONG)
                             .show();
                     break;
-                case 4:  //评论失败了，提示一下用户
+                case ChannelLad.MSG_NET_FAILURE:  //评论失败了，提示一下用户
                     Toast.makeText(PlayerActivity.this, "评论失败，请稍候再试。",
                             Toast.LENGTH_LONG)
                             .show();
@@ -67,7 +69,7 @@ public class PlayerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_player);
 
         Serializable s = getIntent().getSerializableExtra("channel");
-        Log.d("DianDian", "取得的当前频道对象是：" + s);
+        Log.d(TAG, "取得的当前频道对象是：" + s);
         if (s != null && s instanceof Channel) {
             currentChannel = (Channel) s;
             updateUI();

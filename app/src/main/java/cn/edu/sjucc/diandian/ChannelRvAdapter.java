@@ -12,13 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.math.RoundingMode;
 
 public class ChannelRvAdapter extends RecyclerView.Adapter<ChannelRvAdapter.ChannelRowHolder> {
+    private final static String TAG = "DianDian";
 
     private ChannelLad lad = ChannelLad.getInstance();
     private ChannelClickListener listener;
@@ -89,7 +89,7 @@ public class ChannelRvAdapter extends RecyclerView.Adapter<ChannelRvAdapter.Chan
             this.cover = row.findViewById(R.id.channel_cover);
             row.setOnClickListener((v) -> {
                 int position = getLayoutPosition();
-                Log.d("DianDian", position + 1 + "行被点击啦！");
+                Log.d(TAG, position + 1 + "行被点击啦！");
                 //调用时机的跳转代码
                 listener.onChannelClick(position);
             });
