@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     };
 
     private TextInputLayout username, password;
-    private Button loginButton;
+    private Button loginButton, registerButton;
     private UserLab lab = UserLab.getInstance();
 
     private void loginSuccess() {
@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                 .show();
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +69,14 @@ public class LoginActivity extends AppCompatActivity {
             String u = username.getEditText().getText().toString();
             String p = password.getEditText().getText().toString();
             lab.login(u, p, handler);
+        });
+
+        registerButton = findViewById(R.id.register_button);
+        registerButton.setOnClickListener(v -> {
+            Toast.makeText(LoginActivity.this, "正在注册！", Toast.LENGTH_LONG)
+                    .show();
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
     }
 }

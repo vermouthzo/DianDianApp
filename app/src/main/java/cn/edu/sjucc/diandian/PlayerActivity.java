@@ -69,6 +69,7 @@ public class PlayerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_player);
 
         Serializable s = getIntent().getSerializableExtra("channel");
+
         Log.d(TAG, "取得的当前频道对象是：" + s);
         if (s != null && s instanceof Channel) {
             currentChannel = (Channel) s;
