@@ -22,6 +22,7 @@ public class UserLab {
     public final static int USER_REGISTER_FAIL = 4;
     public final static String TAG = "DianDian";
 
+    public final static String USER_CURRENT = "USER_CURRENT";
     private static UserLab INSTANCE = null;
     private List<User> user;
 

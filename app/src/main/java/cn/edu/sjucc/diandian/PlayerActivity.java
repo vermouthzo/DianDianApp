@@ -3,10 +3,12 @@ package cn.edu.sjucc.diandian;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,6 +64,7 @@ public class PlayerActivity extends AppCompatActivity {
             }
         }
     };
+    private MyPreference prefs = MyPreference.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +96,9 @@ public class PlayerActivity extends AppCompatActivity {
         tvQuality = findViewById(R.id.tv_quality);
         tvName.setText(currentChannel.getTitle());
         tvQuality.setText(currentChannel.getQuality());
+        TextView currentUser = findViewById(R.id.current_user);
+        currentUser.setText(prefs.currentUser());
+
         //显示热门评论
         if (hotComments != null && hotComments.size() > 0) {
             Comment c1 = hotComments.get(0);

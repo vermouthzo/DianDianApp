@@ -6,9 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -44,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         this.channelRv.setAdapter(rvAdapter);
         this.channelRv.setLayoutManager(new LinearLayoutManager(this));
 
-    }
 
+    }
 
     @Override
     protected void onResume() {

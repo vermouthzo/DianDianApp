@@ -4,9 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Shader;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
+import android.text.Editable;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -36,10 +40,13 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout username, password;
     private Button loginButton, registerButton;
     private UserLab lab = UserLab.getInstance();
+    private MyPreference prefs = MyPreference.getInstance();
 
     private void loginSuccess() {
         Toast.makeText(LoginActivity.this, "登录成功！", Toast.LENGTH_LONG)
                 .show();
+        //FIXME 替换tom，从服务器获取登录成功的真实用户名。
+        prefs.saveUser("tom");
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
     }
@@ -62,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         loginButton = findViewById(R.id.login_button);
+        prefs.setup(getApplicationContext());
 
         loginButton.setOnClickListener(v -> {
             TextInputLayout username = findViewById(R.id.username);
